@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.storichallenge.base.BaseViewModel
 import com.example.storichallenge.extensions.safeSetValue
 import com.example.storichallenge.utils.SingleLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-//@HiltViewModel
-class MainViewModel /*@Inject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
 
-)*/: BaseViewModel() {
+): BaseViewModel() {
 
     private val onNavigateTo = SingleLiveData<StartNavigation>()
 

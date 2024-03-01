@@ -1,10 +1,10 @@
-package com.example.storichallenge.modules.login.view
+package com.example.storichallenge.modules.login.presentation.view
 
 import androidx.fragment.app.viewModels
 import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentLoginBinding
 import com.example.storichallenge.extensions.viewBinding
-import com.example.storichallenge.modules.login.viewModel.LoginViewModel
+import com.example.storichallenge.modules.login.presentation.viewModel.LoginViewModel
 
 // @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {

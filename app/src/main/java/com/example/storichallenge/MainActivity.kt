@@ -8,8 +8,9 @@ import com.example.storichallenge.MainViewModel.StartNavigation
 import com.example.storichallenge.MainViewModel.StartNavigation.NavigateLogin
 import com.example.storichallenge.MainViewModel.StartNavigation.NavigateUnlock
 import com.example.storichallenge.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-// @AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
