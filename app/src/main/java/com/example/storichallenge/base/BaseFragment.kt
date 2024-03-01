@@ -10,6 +10,8 @@ import com.example.storichallenge.base.model.DialogTexts
 import com.example.storichallenge.constants.StoriConstants
 import com.example.storichallenge.modules.loaderDialog.LoaderDialogFragment
 import com.example.storichallenge.modules.loaderDialog.MessageDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
 ) : Fragment() {
@@ -30,10 +32,8 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
      */
     abstract val viewModel: VM
 
-    //@Inject
     lateinit var loaderDialogFragment: LoaderDialogFragment
 
-    //@Inject
     lateinit var messageDialogFragment: MessageDialogFragment
 
     override fun onCreateView(

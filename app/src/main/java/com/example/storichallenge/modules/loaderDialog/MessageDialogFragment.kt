@@ -12,9 +12,11 @@ import com.example.storichallenge.base.model.DialogTexts
 import com.example.storichallenge.databinding.FragmentMessageDialogBinding
 import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.extensions.visible
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-// @AndroidEntryPoint
-class MessageDialogFragment /*@Inject constructor()*/: DialogFragment() {
+
+class MessageDialogFragment: DialogFragment() {
 
     private val binding by viewBinding {
         FragmentMessageDialogBinding.inflate(layoutInflater)

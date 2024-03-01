@@ -7,6 +7,7 @@ import com.example.storichallenge.base.model.NavigationAction
 import com.example.storichallenge.constants.StoriConstants
 import com.example.storichallenge.extensions.safeSetValue
 import com.example.storichallenge.utils.SingleLiveData
+import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseViewModel: ViewModel() {
 

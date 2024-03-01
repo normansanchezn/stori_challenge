@@ -6,9 +6,11 @@ import androidx.fragment.app.DialogFragment
 import com.example.storichallenge.R
 import com.example.storichallenge.databinding.FragmentLoginBinding
 import com.example.storichallenge.extensions.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-// @AndroidEntryPoint
-class LoaderDialogFragment /*@Inject constructor()*/: DialogFragment() {
+
+class LoaderDialogFragment : DialogFragment() {
 
     private val binding by viewBinding {
         FragmentLoginBinding.inflate(layoutInflater)
