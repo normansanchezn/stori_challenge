@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="stori_primary">#062d31</color>
+    <color name="stori_primary_light">#04d484</color>
+    <color name="gray_e">#EEEEEE</color>
+    <color name="gray_75">#757575</color>
 </resources>
