@@ -3,6 +3,11 @@
     <style name="Base.Theme.StoriChallenge" parent="Theme.Material3.DayNight.NoActionBar">
     </style>
 
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/stori_primary_light</item>
+        <item name="colorPrimaryDark">@color/stori_primary</item>
+    </style>
+
     <style name="Theme.StoriChallenge" parent="Base.Theme.StoriChallenge" />
 
     <style name="DialogTheme" parent="Base.Theme.StoriChallenge">
@@ -49,6 +54,21 @@
         <item name="android:layout_width">@dimen/match_constraint</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/button_primary_background</item>
+        <item name="android:backgroundTint">@drawable/button_primary_background</item>
         <item name="android:textAppearance">@style/TextAppearance.Stori.Widget.Button.Primary</item>
+    </style>
+
+    <style name="TextAppearance.Stori.Title.Small" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+        <item name="lineHeight">18dp</item>
+        <item name="android:textColor">@color/gray_75</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextAppearance.Stori.Title.Small.Bold" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+        <item name="lineHeight">18dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>

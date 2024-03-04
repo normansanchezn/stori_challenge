@@ -9,10 +9,19 @@
         android:id="@+id/loginFragment"
         android:name="com.example.storichallenge.modules.login.presentation.view.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/unlockFragment"
         android:name="com.example.storichallenge.modules.unlock.presentation.view.UnlockFragment"
         android:label="fragment_unlock"
         tools:layout="@layout/fragment_unlock" />
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.example.storichallenge.modules.onboarding.permissions.view.PermissionsFragment"
+        android:label="fragment_permissions"
+        tools:layout="@layout/fragment_permissions" />
 </navigation>

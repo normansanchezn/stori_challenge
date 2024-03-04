@@ -2,6 +2,14 @@
     <string name="app_name">StoriChallenge</string>
     <string name="txt_dummy">Text dummy</string>
     <string name="txt_button_option">Option</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_stori_logo">Logo de Stori</string>
+    <string name="txt_sign_in">Iniciar sesión</string>
+    <string name="txt_create_account">Quiero mi Stori</string>
+    <string name="txt_continue">Continuar</string>
+    <string name="txt_title_permissions">Tu cuenta siempre esta segura y actualizada</string>
+    <string name="txt_permissions_description">Para usar la app, es necesario darle los permisos necesarios.</string>
+    <string name="txt_biometric">Autenticación biométrica</string>
+    <string name="txt_biometric_auth_description">Utilizaremos tus datos biométricos para acceder de forma segura a tu información</string>
+    <string name="txt_camera">Cámara</string>
+    <string name="txt_camera_description">Necesitamos acceder a tu cámara para validar tus datos personales.</string>
 </resources>

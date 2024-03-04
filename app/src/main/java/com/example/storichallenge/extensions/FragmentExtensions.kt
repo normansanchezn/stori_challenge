@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.navigation.fragment.findNavController
+import com.example.storichallenge.base.model.NavigationAction
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -71,3 +73,11 @@ class AutoClearedValue<T : Any>(val fragment: Fragment) : ReadWriteProperty<Frag
 }
 
 fun <T : Any> Fragment.autoCleared() = AutoClearedValue<T>(this)
+
+fun Fragment.navigateTo(navigationAction: NavigationAction) {
+    findNavController().navigate(
+        navigationAction.actionId,
+        navigationAction.arguments,
+        navigationAction.navOptions
+    )
+}

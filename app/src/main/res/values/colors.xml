@@ -6,4 +6,5 @@
     <color name="stori_primary_light">#04d484</color>
     <color name="gray_e">#EEEEEE</color>
     <color name="gray_75">#757575</color>
+    <color name="transparent_stori">#00000000</color>
 </resources>
