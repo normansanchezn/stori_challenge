@@ -1,4 +1,4 @@
-package com.example.storichallenge.modules.onboarding.permissions.viewModel
+package com.example.storichallenge.modules.onboarding.email.presentation.viewModel
 
 import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseViewModel
@@ -8,12 +8,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class PermissionsViewModel @Inject constructor(): BaseViewModel() {
+class EmailViewModel @Inject constructor(): BaseViewModel() {
 
-    fun navigateToPersonalData() {
+    fun navigateToPersonalInformation() {
         onNavigationActionMLD.safeSetValue(
             NavigationAction(
-                R.id.action_permissionsFragment_to_personalDataFragment
+                R.id.action_emailFragment_to_personalDataFragment
             )
         )
     }

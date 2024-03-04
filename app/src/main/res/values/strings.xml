@@ -20,4 +20,9 @@
     <string name="txt_write_u_email">Escribe tu correo electrónico</string>
     <string name="txt_write_u_password">Escribe una contraseña segura</string>
     <string name="txt_write_u_re_password">Confirma tu contraseña</string>
+    <string name="txt_check_u_email">Iniciemos con tu correo electrónico</string>
+    <string name="txt_hint_email">Correo electrónico</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_enter_valid_email">Ingresa un correo válido</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.storichallenge.modules.onboarding.permissions.view
+package com.example.storichallenge.modules.onboarding.permissions.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.gone
 import com.example.storichallenge.extensions.navigateTo
 import com.example.storichallenge.modules.onboarding.permissions.data.model.PermissionsList
-import com.example.storichallenge.modules.onboarding.permissions.viewModel.PermissionsViewModel
+import com.example.storichallenge.modules.onboarding.permissions.presentation.viewModel.PermissionsViewModel
 
 class PermissionsFragment : Fragment() {
 
@@ -49,7 +49,7 @@ class PermissionsFragment : Fragment() {
     private fun initListeners() {
         with(binding) {
             btnContinue.debounceClick {
-                viewModel.navigateToPersonalData()
+                viewModel.navigateToEmailData()
             }
         }
     }
