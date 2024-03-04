@@ -23,5 +23,14 @@
         android:id="@+id/permissionsFragment"
         android:name="com.example.storichallenge.modules.onboarding.permissions.view.PermissionsFragment"
         android:label="fragment_permissions"
-        tools:layout="@layout/fragment_permissions" />
+        tools:layout="@layout/fragment_permissions" >
+        <action
+            android:id="@+id/action_permissionsFragment_to_personalDataFragment"
+            app:destination="@id/personalDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalDataFragment"
+        android:name="com.example.storichallenge.modules.onboarding.personalData.view.PersonalDataFragment"
+        android:label="fragment_personal_data"
+        tools:layout="@layout/fragment_personal_data" />
 </navigation>

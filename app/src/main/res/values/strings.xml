@@ -12,4 +12,12 @@
     <string name="txt_biometric_auth_description">Utilizaremos tus datos biométricos para acceder de forma segura a tu información</string>
     <string name="txt_camera">Cámara</string>
     <string name="txt_camera_description">Necesitamos acceder a tu cámara para validar tus datos personales.</string>
+    <string name="txt_check_u_information">Queremos conocerte</string>
+    <string name="txt_kyc_description">Es importante que llenes todos los campos para crear un perfil completo 🚀</string>
+    <string name="txt_name">Nombre</string>
+    <string name="txt_write_u_name">Escribe tu nombre</string>
+    <string name="txt_write_u_last_name">Escribe tu apellido paterno</string>
+    <string name="txt_write_u_email">Escribe tu correo electrónico</string>
+    <string name="txt_write_u_password">Escribe una contraseña segura</string>
+    <string name="txt_write_u_re_password">Confirma tu contraseña</string>
 </resources>

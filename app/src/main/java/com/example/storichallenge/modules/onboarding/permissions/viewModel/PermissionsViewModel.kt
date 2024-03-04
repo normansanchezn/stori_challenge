@@ -11,10 +11,10 @@ import javax.inject.Inject
 class PermissionsViewModel @Inject constructor(): BaseViewModel() {
 
     fun navigateToPersonalData() {
-        /*onNavigationActionMLD.safeSetValue(
+        onNavigationActionMLD.safeSetValue(
             NavigationAction(
-                R.id.
+                R.id.action_permissionsFragment_to_personalDataFragment
             )
-        )*/
+        )
     }
 }
