@@ -77,5 +77,14 @@
         android:id="@+id/previewImageFragment"
         android:name="com.example.storichallenge.modules.onboarding.preview.presentation.view.PreviewImageFragment"
         android:label="fragment_preview_image"
-        tools:layout="@layout/fragment_preview_image" />
+        tools:layout="@layout/fragment_preview_image" >
+        <action
+            android:id="@+id/action_previewImageFragment_to_successFragment"
+            app:destination="@id/successFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successFragment"
+        android:name="com.example.storichallenge.modules.onboarding.success.presentation.view.SuccessFragment"
+        android:label="fragment_success"
+        tools:layout="@layout/fragment_success" />
 </navigation>

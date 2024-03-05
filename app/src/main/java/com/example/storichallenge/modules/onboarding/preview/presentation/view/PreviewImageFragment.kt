@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.storichallenge.databinding.FragmentPreviewImageBinding
 import com.example.storichallenge.extensions.autoCleared
+import com.example.storichallenge.extensions.debounceClick
+import com.example.storichallenge.extensions.navigateTo
 import com.example.storichallenge.modules.onboarding.preview.presentation.viewModel.PreviewImageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,11 +40,18 @@ class PreviewImageFragment : Fragment() {
             onGetImageUri().observe(viewLifecycleOwner) { imageUri ->
                 binding.resultPhoto.setImageURI(imageUri)
             }
+
+            onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
+                navigateTo(navEvent)
+            }
         }
     }
 
     private fun initListeners() {
-
+        with(binding) {
+            btnContinue.debounceClick {
+                viewModel.navigateToSuccessView()
+            }
+        }
     }
-
 }

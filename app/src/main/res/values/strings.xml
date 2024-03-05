@@ -45,4 +45,7 @@
     <string name="txt_error_photo_selected">Debes seleccionar una imagen</string>
     <string name="txt_preview_image_title">Revisa tu imagen</string>
     <string name="txt_preview_image_description">Debes validar que tu foto se vea clara. ✅</string>
+    <string name="txt_congrats">¡Felicidades!</string>
+    <string name="txt_congrats_description">Ahora eres perte del Stori Team. 💰</string>
+    <string name="txt_finish">Terminar</string>
 </resources>
