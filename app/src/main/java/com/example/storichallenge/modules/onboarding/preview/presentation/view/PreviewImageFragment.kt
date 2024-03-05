@@ -28,7 +28,17 @@ class PreviewImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.setup(arguments)
         initListeners()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        with(viewModel) {
+            onGetImageUri().observe(viewLifecycleOwner) { imageUri ->
+                binding.resultPhoto.setImageURI(imageUri)
+            }
+        }
     }
 
     private fun initListeners() {
