@@ -1,4 +1,4 @@
-package com.example.storichallenge.modules.onboarding.passwordView.presentation.viewModel
+package com.example.storichallenge.modules.onboarding.cameraUsageWarningScreen.presentation.viewModel
 
 import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseViewModel
@@ -8,13 +8,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class PasswordViewModel @Inject constructor(): BaseViewModel() {
+class CameraUsageWarningViewModel @Inject constructor() : BaseViewModel() {
 
-    fun navigateToCameraUsageWarning() {
+    fun navigateToCameraView() {
         onNavigationActionMLD.safeSetValue(
             NavigationAction(
-                R.id.action_passwordFragment_to_cameraUsageWarningFragment
+                R.id.action_cameraUsageWarningFragment_to_cameraViewFragment
             )
         )
     }
+
 }

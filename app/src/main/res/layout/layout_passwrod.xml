@@ -21,6 +21,7 @@
             style="@style/TextAppearance.Stori.Title.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="@string/txt_eight_characters" />
 
         <CheckBox
@@ -28,6 +29,7 @@
             style="@style/TextAppearance.Stori.Title.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="@string/txt_capital_letters" />
 
         <CheckBox
@@ -35,6 +37,7 @@
             style="@style/TextAppearance.Stori.Title.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="@string/txt_special_characters" />
 
         <CheckBox
@@ -42,6 +45,7 @@
             style="@style/TextAppearance.Stori.Title.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:text="@string/txt_at_least_one_number" />
 
     </LinearLayout>

@@ -50,5 +50,32 @@
         android:id="@+id/passwordFragment"
         android:name="com.example.storichallenge.modules.onboarding.passwordView.presentation.view.PasswordFragment"
         android:label="fragment_password"
-        tools:layout="@layout/fragment_password" />
+        tools:layout="@layout/fragment_password" >
+        <action
+            android:id="@+id/action_passwordFragment_to_cameraUsageWarningFragment"
+            app:destination="@id/cameraUsageWarningFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraUsageWarningFragment"
+        android:name="com.example.storichallenge.modules.onboarding.cameraUsageWarningScreen.presentation.view.CameraUsageWarningFragment"
+        android:label="fragment_camera_usage_warning"
+        tools:layout="@layout/fragment_camera_usage_warning" >
+        <action
+            android:id="@+id/action_cameraUsageWarningFragment_to_cameraViewFragment"
+            app:destination="@id/cameraViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraViewFragment"
+        android:name="com.example.storichallenge.modules.onboarding.cameraView.presentation.view.CameraViewFragment"
+        android:label="fragment_camera_view"
+        tools:layout="@layout/fragment_camera_view" >
+        <action
+            android:id="@+id/action_cameraViewFragment_to_previewImageFragment"
+            app:destination="@id/previewImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/previewImageFragment"
+        android:name="com.example.storichallenge.modules.onboarding.preview.presentation.view.PreviewImageFragment"
+        android:label="fragment_preview_image"
+        tools:layout="@layout/fragment_preview_image" />
 </navigation>

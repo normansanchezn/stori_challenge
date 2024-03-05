@@ -31,4 +31,18 @@
     <string name="txt_special_characters">Al menos un caracter especial.</string>
     <string name="txt_at_least_one_number">Al menos un número.</string>
     <string name="txt_email_description">Debes escribir un email existente y que no pertenezca a otra cuenta. 📩</string>
+    <string name="txt_validate_id_title">Necesitamos validar tu identidad</string>
+    <string name="txt_validate_id_description">Sube una foto de tu identificación. ⬆️</string>
+    <string name="txt_permissions_camera">Permisos para el uso de la cámara</string>
+    <string name="txt_permissions_camera_description">Recuerda que para poder acceder a esta funcionalidad, debes brindarnos permisos de cámara para obtener la fotografía de tu identificación.</string>
+    <string name="txt_resources">Recursos</string>
+    <string name="txt_resources_camera_description">Recuerda que puedes tomar una foto o elegirla desde tu galería.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="take_photo">Tomar foto</string>
+    <string name="txt_permissions_not_granted">Permisos no otorgados por la usuario</string>
+    <string name="txt_error_take_photo">"La captura de la foto falló por: "</string>
+    <string name="txt_error_photo_selected">Debes seleccionar una imagen</string>
+    <string name="txt_preview_image_title">Revisa tu imagen</string>
+    <string name="txt_preview_image_description">Debes validar que tu foto se vea clara. ✅</string>
 </resources>

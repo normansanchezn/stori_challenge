@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.storichallenge.databinding.FragmentPasswordBinding
 import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
+import com.example.storichallenge.extensions.navigateTo
 import com.example.storichallenge.modules.onboarding.passwordView.presentation.viewModel.PasswordViewModel
 
 class PasswordFragment : Fragment() {
@@ -33,6 +34,15 @@ class PasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        with(viewModel) {
+            onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
+                navigateTo(navEvent)
+            }
+        }
     }
 
     private fun initListeners() {
@@ -53,7 +63,7 @@ class PasswordFragment : Fragment() {
         }
 
         binding.btnContinue.debounceClick {
-
+            viewModel.navigateToCameraUsageWarning()
         }
     }
 
