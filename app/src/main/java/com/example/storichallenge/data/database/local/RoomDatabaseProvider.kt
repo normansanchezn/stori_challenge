@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.storichallenge.constants.StoriConstants
 import com.example.storichallenge.data.database.local.dao.AccountDao
+import com.example.storichallenge.data.database.local.entities.AccountEntity
 
 @Database(
-    entities = [],
+    entities = [AccountEntity::class],
     version = 1,
     exportSchema = false
 )

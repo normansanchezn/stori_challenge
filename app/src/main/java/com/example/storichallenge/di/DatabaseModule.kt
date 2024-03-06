@@ -15,4 +15,7 @@ object DatabaseModule {
     @Provides
     fun provideDatabase(@ApplicationContext appContext: Context) = RoomDatabaseProvider.getInstance(appContext)
 
+    @Provides
+    fun provideAccountDao(db: RoomDatabaseProvider) = db.accountDao()
+
 }
