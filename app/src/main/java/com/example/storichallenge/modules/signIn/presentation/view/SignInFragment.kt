@@ -1,44 +1,29 @@
 package com.example.storichallenge.modules.signIn.presentation.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentSignInBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.setOptionsMenu
 import com.example.storichallenge.extensions.setUpFragmentToolBar
+import com.example.storichallenge.extensions.viewBinding
+import com.example.storichallenge.modules.signIn.presentation.viewModel.SignInViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class SignInFragment : Fragment() {
-
-    private var binding by autoCleared<FragmentSignInBinding>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSignInBinding.inflate(inflater, container, false)
-        return binding.root
+@AndroidEntryPoint
+class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
+    override val binding: FragmentSignInBinding by viewBinding {
+        FragmentSignInBinding.inflate(layoutInflater)
     }
+    override val viewModel: SignInViewModel by viewModels()
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupView()
-        initListeners()
-    }
-
-    private fun initListeners() {
+    override fun initListeners() {
         setUpFragmentToolBar(
             binding.toolbar.toolbarSingleTitle,
         )
         setOptionsMenu()
     }
 
-    private fun setupView() {
+    override fun setupView() {
 
     }
-
 }

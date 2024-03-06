@@ -1,43 +1,27 @@
 package com.example.storichallenge.modules.onboarding.passwordView.presentation.view
 
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentPasswordBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.onboarding.passwordView.presentation.viewModel.PasswordViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class PasswordFragment : Fragment() {
+@AndroidEntryPoint
+class PasswordFragment : BaseFragment<FragmentPasswordBinding, PasswordViewModel>() {
 
-    private var binding by autoCleared<FragmentPasswordBinding>()
-    private val viewModel by viewModels<PasswordViewModel>()
-
+    override val binding: FragmentPasswordBinding by viewBinding {
+        FragmentPasswordBinding.inflate(layoutInflater)
+    }
+    override val viewModel: PasswordViewModel by viewModels()
     private var passwordValidated = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPasswordBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initObservers()
-    }
-
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)
@@ -45,7 +29,7 @@ class PasswordFragment : Fragment() {
         }
     }
 
-    private fun initListeners() {
+    override fun initListeners() {
         with(binding.passwordLayout) {
             password.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }

@@ -1,27 +1,27 @@
 package com.example.storichallenge.modules.onboarding.permissions.presentation.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentPermissionsBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.gone
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.onboarding.permissions.data.model.PermissionsList
 import com.example.storichallenge.modules.onboarding.permissions.presentation.viewModel.PermissionsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class PermissionsFragment : Fragment() {
+@AndroidEntryPoint
+class PermissionsFragment : BaseFragment<FragmentPermissionsBinding, PermissionsViewModel>() {
 
-    private var binding by autoCleared<FragmentPermissionsBinding>()
-    private val viewModel by viewModels<PermissionsViewModel>()
+    override val binding: FragmentPermissionsBinding by viewBinding {
+        FragmentPermissionsBinding.inflate(layoutInflater)
+    }
+    override val viewModel: PermissionsViewModel by viewModels()
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -31,22 +31,7 @@ class PermissionsFragment : Fragment() {
             binding.btnContinue.isEnabled = denied.isEmpty()
         }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPermissionsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initObservers()
-    }
-
-    private fun initListeners() {
+    override fun initListeners() {
         with(binding) {
             btnContinue.debounceClick {
                 viewModel.navigateToEmailData()
@@ -54,7 +39,7 @@ class PermissionsFragment : Fragment() {
         }
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)

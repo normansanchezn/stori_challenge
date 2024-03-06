@@ -1,42 +1,24 @@
 package com.example.storichallenge.modules.onboarding.personalData.presentation.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentPersonalDataBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.onboarding.personalData.presentation.viewModel.PersonalDataViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
-class PersonalDataFragment : Fragment() {
+class PersonalDataFragment : BaseFragment<FragmentPersonalDataBinding, PersonalDataViewModel>() {
 
-    private var binding by autoCleared<FragmentPersonalDataBinding>()
-    private val viewModel by viewModels<PersonalDataViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPersonalDataBinding.inflate(inflater, container, false)
-        return binding.root
+    override val binding: FragmentPersonalDataBinding by viewBinding {
+        FragmentPersonalDataBinding.inflate(layoutInflater)
     }
+    override val viewModel: PersonalDataViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initObservers()
-    }
-
-    private fun initListeners() {
+    override fun initListeners() {
         with(binding.layoutPersonalData) {
             name.doAfterTextChanged { enableContinueButton() }
             lastName.doAfterTextChanged { enableContinueButton() }
@@ -52,12 +34,11 @@ class PersonalDataFragment : Fragment() {
                 binding.layoutPersonalData.lastName.text.toString().isNotEmpty()
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)
             }
         }
     }
-
 }

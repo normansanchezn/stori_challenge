@@ -1,41 +1,23 @@
 package com.example.storichallenge.modules.onboarding.preview.presentation.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentPreviewImageBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.onboarding.preview.presentation.viewModel.PreviewImageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PreviewImageFragment : Fragment() {
+class PreviewImageFragment : BaseFragment<FragmentPreviewImageBinding, PreviewImageViewModel>() {
 
-    private var binding by autoCleared<FragmentPreviewImageBinding>()
-    private val viewModel by viewModels<PreviewImageViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentPreviewImageBinding.inflate(inflater, container, false)
-        return binding.root
+    override val binding: FragmentPreviewImageBinding by viewBinding {
+        FragmentPreviewImageBinding.inflate(layoutInflater)
     }
+    override val viewModel: PreviewImageViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.setup(arguments)
-        initListeners()
-        initObservers()
-    }
-
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onGetImageUri().observe(viewLifecycleOwner) { imageUri ->
                 binding.resultPhoto.setImageURI(imageUri)
@@ -47,7 +29,7 @@ class PreviewImageFragment : Fragment() {
         }
     }
 
-    private fun initListeners() {
+    override fun initListeners() {
         with(binding) {
             btnContinue.debounceClick {
                 viewModel.navigateToSuccessView()

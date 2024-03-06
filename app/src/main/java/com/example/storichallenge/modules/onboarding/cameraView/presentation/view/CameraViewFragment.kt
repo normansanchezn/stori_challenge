@@ -4,12 +4,8 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,14 +16,14 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import com.example.storichallenge.R
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentCameraViewBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.onboarding.cameraView.presentation.viewModel.CameraViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -36,30 +32,16 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @AndroidEntryPoint
-class CameraViewFragment : Fragment() {
+class CameraViewFragment : BaseFragment<FragmentCameraViewBinding, CameraViewModel>() {
 
-    private var binding by autoCleared<FragmentCameraViewBinding>()
-    private val viewModel by viewModels<CameraViewModel>()
-
+    override val binding: FragmentCameraViewBinding by viewBinding {
+        FragmentCameraViewBinding.inflate(layoutInflater)
+    }
+    override val viewModel: CameraViewModel by viewModels()
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCameraViewBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListeners()
-        initObservers()
-    }
-
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)
@@ -67,7 +49,7 @@ class CameraViewFragment : Fragment() {
         }
     }
 
-    private fun initListeners() {
+    override fun initListeners() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {

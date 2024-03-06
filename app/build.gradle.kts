@@ -1,6 +1,5 @@
 plugins {
     kotlin("kapt")
-    id("kotlin-kapt")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
@@ -60,7 +59,7 @@ dependencies {
     val viewModelVersion = "2.7.0"
     val activityVersion = "1.8.2"
     val fragmentVersion = "1.6.2"
-    // val hiltVersion = "2.51"
+    val hiltVersion = "2.48"
     val roomVersion = "2.6.1"
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -94,8 +93,8 @@ dependencies {
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
 
     // Camera X

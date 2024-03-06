@@ -1,40 +1,23 @@
 package com.example.storichallenge.modules.login.presentation.view
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentLoginBinding
-import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.viewBinding
 import com.example.storichallenge.modules.login.presentation.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
 
-    private var binding by autoCleared<FragmentLoginBinding>()
-    private val viewModel by viewModels<LoginViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
+    override val binding: FragmentLoginBinding by viewBinding {
+        FragmentLoginBinding.inflate(layoutInflater)
     }
+    override val viewModel: LoginViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupView()
-        initObservers()
-    }
-
-    private fun initObservers() {
+    override fun initObservers() {
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)
@@ -42,7 +25,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun setupView() {
+    override fun setupView() {
         with(binding) {
             createAccount.debounceClick {
                 viewModel.navigateToOnboarding()
