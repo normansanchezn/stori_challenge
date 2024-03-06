@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".modules.signIn.presentation.view.SignInFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_single_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signInTitle"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        style="@style/TextAppearance.Stori.Title.Large"
+        android:text="@string/txt_sign_in_title"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        style="@style/TextInputLayout.Stori.OutlinedBox"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:hint="@string/txt_hint_email_copy"
+        app:helperTextTextColor="@color/gray_75"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            style="@style/TextAppearance.Stori.Widget.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_input"
+        style="@style/TextInputLayout.Stori.OutlinedBox"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="16dp"
+        android:hint="@string/txt_write_u_password_copy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            style="@style/TextAppearance.Stori.Widget.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/saveEmailButton"
+        style="@style/Widget.Stori.Button.Primary"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginBottom="@dimen/dp_16"
+        android:enabled="false"
+        android:text="@string/txt_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

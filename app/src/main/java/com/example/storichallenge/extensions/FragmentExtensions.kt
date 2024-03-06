@@ -1,8 +1,15 @@
 package com.example.storichallenge.extensions
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.TextView
+import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
@@ -10,6 +17,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.storichallenge.R
 import com.example.storichallenge.base.model.NavigationAction
+import com.example.storichallenge.constants.StoriConstants.EMPTY_STRING
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -96,4 +104,46 @@ fun Fragment.setUpFragmentHomeToolBar(toolbar: Toolbar, title: String) {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
     }
+}
+
+fun Fragment.setUpFragmentToolBar(toolbar: Toolbar, title: String = EMPTY_STRING, withCloseButton: Boolean = false, withBackButton: Boolean = true) {
+    toolbar.findViewById<TextView>(R.id.toolbar_title).apply {
+        text = title
+    }
+    (requireActivity() as AppCompatActivity).apply {
+        setSupportActionBar(toolbar)
+        if (withBackButton) {
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_action_back)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        if (withCloseButton) {
+            supportActionBar?.setHomeAsUpIndicator(ContextCompat.getDrawable(requireContext(), R.drawable.icon_close))
+        }
+    }
+}
+
+fun Fragment.setOptionsMenu(@MenuRes menuRes: Int? = null, menuHomeCallback: (() -> Unit?)? = null, menuItemCallback: (() -> Unit?)? = null) {
+    val menuHost: MenuHost = requireActivity()
+    menuHost.addMenuProvider(object : MenuProvider {
+
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            if (menuRes != null) {
+                menuInflater.inflate(menuRes, menu)
+            }
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            when (menuItem.itemId) {
+                android.R.id.home -> if (menuHomeCallback == null) {
+                    this@setOptionsMenu.findNavController().popBackStack()
+                } else {
+                    menuHomeCallback.invoke()
+                }
+                else -> menuItemCallback?.invoke()
+            }
+            return true
+        }
+
+    }, viewLifecycleOwner)
 }

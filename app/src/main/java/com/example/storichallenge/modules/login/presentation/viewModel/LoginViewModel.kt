@@ -18,4 +18,12 @@ class LoginViewModel @Inject constructor(): BaseViewModel() {
             )
         )
     }
+
+    fun navigateToSignIn() {
+        onNavigationActionMLD.safeSetValue(
+            NavigationAction(
+                R.id.action_loginFragment_to_signInFragment
+            )
+        )
+    }
 }
