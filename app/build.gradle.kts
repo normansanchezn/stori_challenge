@@ -88,6 +88,11 @@ dependencies {
 
     // Room
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     // Biometric Authentication
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")

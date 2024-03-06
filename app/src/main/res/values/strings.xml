@@ -56,4 +56,5 @@
     <string name="txt_sign_in_title">Inicia sesión</string>
     <string name="txt_write_u_password_copy">Escribe tu contraseña</string>
     <string name="txt_hint_email_copy">Escribe tu correo electrónico</string>
+    <string name="txt_try_later">Intentar más tarde</string>
 </resources>

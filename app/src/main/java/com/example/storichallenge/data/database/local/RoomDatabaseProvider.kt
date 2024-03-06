@@ -28,8 +28,7 @@ abstract class RoomDatabaseProvider: RoomDatabase() {
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context,
             RoomDatabaseProvider::class.java,
-            StoriConstants.STORI_DATABASE_NAME
-        ).fallbackToDestructiveMigration()
+            StoriConstants.STORI_DATABASE_NAME)
             .allowMainThreadQueries()
             .build()
 

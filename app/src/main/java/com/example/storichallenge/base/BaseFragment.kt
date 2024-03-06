@@ -32,8 +32,10 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
      */
     abstract val viewModel: VM
 
+    @Inject
     lateinit var loaderDialogFragment: LoaderDialogFragment
 
+    @Inject
     lateinit var messageDialogFragment: MessageDialogFragment
 
     override fun onCreateView(
