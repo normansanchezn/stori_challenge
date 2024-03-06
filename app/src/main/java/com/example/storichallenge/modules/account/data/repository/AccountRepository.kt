@@ -8,7 +8,13 @@ class AccountRepository @Inject constructor(
     private val localAccountDataSource: LocalAccountDataSource
 ) {
 
-    suspend fun createAccount(email: String): RoomOperation =
+    suspend fun createLocalAccount(email: String): RoomOperation =
         localAccountDataSource.createAccount(email)
+
+    suspend fun getLocalAccount() =
+        localAccountDataSource.getAccount()
+
+    suspend fun updatePersonalData(email: String?, name: String, lastName: String) =
+        localAccountDataSource.updatePersonalData(email, name, lastName)
 
 }

@@ -28,4 +28,18 @@ class LocalAccountDS @Inject constructor(
 
     override suspend fun getAccount(): AccountEntity? =
         localDataSource.getAccount()
+
+    override suspend fun updatePersonalData(
+        email: String?,
+        name: String,
+        lastName: String
+    ): RoomOperation {
+        return try {
+            localDataSource.updateNameAndLastName(email, name, lastName)
+
+            RoomOperation.SuccessOperation
+        } catch (e: Exception) {
+            RoomOperation.ErrorOperation
+        }
+    }
 }

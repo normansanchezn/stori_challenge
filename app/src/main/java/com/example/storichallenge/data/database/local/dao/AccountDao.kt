@@ -18,7 +18,7 @@ interface AccountDao {
             "SET name=:name," +
             "last_name=:lastName " +
             "WHERE email=:email")
-    suspend fun updateNameAndLastName(email: String, name: String, lastName: String)
+    suspend fun updateNameAndLastName(email: String?, name: String, lastName: String)
 
     @Query("UPDATE AccountEntity " +
             "SET password=:password " +

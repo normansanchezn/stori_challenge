@@ -9,5 +9,5 @@ class CreateAccountUseCase @Inject constructor(
 ) {
 
     suspend fun invoke(email: String): RoomOperation =
-        accountRepository.createAccount(email)
+        accountRepository.createLocalAccount(email)
 }
