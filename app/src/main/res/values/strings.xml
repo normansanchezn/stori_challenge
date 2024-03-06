@@ -37,8 +37,6 @@
     <string name="txt_permissions_camera_description">Recuerda que para poder acceder a esta funcionalidad, debes brindarnos permisos de cámara para obtener la fotografía de tu identificación.</string>
     <string name="txt_resources">Recursos</string>
     <string name="txt_resources_camera_description">Recuerda que puedes tomar una foto o elegirla desde tu galería.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="take_photo">Tomar foto</string>
     <string name="txt_permissions_not_granted">Permisos no otorgados por la usuario</string>
     <string name="txt_error_take_photo">"La captura de la foto falló por: "</string>
@@ -48,4 +46,7 @@
     <string name="txt_congrats">¡Felicidades!</string>
     <string name="txt_congrats_description">Ahora eres perte del Stori Team. 💰</string>
     <string name="txt_finish">Terminar</string>
+    <string name="txt_total_balance">Balance total</string>
+    <string name="txt_home">Inicio</string>
+    <string name="txt_dummy_amount">$65,000.00</string>
 </resources>

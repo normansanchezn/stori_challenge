@@ -1,10 +1,14 @@
 package com.example.storichallenge.extensions
 
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
+import com.example.storichallenge.R
 import com.example.storichallenge.base.model.NavigationAction
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
@@ -80,4 +84,16 @@ fun Fragment.navigateTo(navigationAction: NavigationAction) {
         navigationAction.arguments,
         navigationAction.navOptions
     )
+}
+
+fun Fragment.setUpFragmentHomeToolBar(toolbar: Toolbar, title: String) {
+    toolbar.findViewById<TextView>(R.id.toolbar_title).apply {
+        text = title
+    }
+    (requireActivity() as AppCompatActivity).apply {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.icon_profile)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+    }
 }

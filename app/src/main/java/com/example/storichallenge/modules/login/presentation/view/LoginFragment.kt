@@ -1,5 +1,6 @@
 package com.example.storichallenge.modules.login.presentation.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.example.storichallenge.databinding.FragmentLoginBinding
 import com.example.storichallenge.extensions.autoCleared
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.modules.home.HomeActivity
 import com.example.storichallenge.modules.login.presentation.viewModel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,6 +48,11 @@ class LoginFragment : Fragment() {
         with(binding) {
             createAccount.debounceClick {
                 viewModel.navigateToOnboarding()
+            }
+
+            login.debounceClick {
+                requireActivity().finish()
+                startActivity(Intent(requireContext(), HomeActivity::class.java))
             }
         }
     }

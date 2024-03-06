@@ -9,7 +9,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel: BaseViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(): BaseViewModel() {
 
     private val onNavigateTo = SingleLiveData<StartNavigation>()
 
