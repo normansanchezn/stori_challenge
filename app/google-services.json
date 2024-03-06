@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "755044666712",
+    "project_id": "normanstoritest",
+    "storage_bucket": "normanstoritest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755044666712:android:85f0ebcac0348d2848e92d",
+        "android_client_info": {
+          "package_name": "com.example.storichallenge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVaIYAmjgLU-8iU_4xTOHJIKfiR_B9DNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
