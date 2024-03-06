@@ -17,4 +17,7 @@ class AccountRepository @Inject constructor(
     suspend fun updatePersonalData(email: String?, name: String, lastName: String) =
         localAccountDataSource.updatePersonalData(email, name, lastName)
 
+    suspend fun updateLocalPassword(email: String?, password: String) =
+        localAccountDataSource.updateLocalPassword(email, password)
+
 }

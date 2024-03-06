@@ -23,7 +23,7 @@ interface AccountDao {
     @Query("UPDATE AccountEntity " +
             "SET password=:password " +
             "WHERE email=:email")
-    suspend fun updatePassword(email: String, password: String)
+    suspend fun updatePassword(email: String?, password: String)
 
     @Query("UPDATE AccountEntity " +
             "SET id_photo=:idPhoto " +

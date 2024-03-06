@@ -4,7 +4,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseFragment
+import com.example.storichallenge.base.model.DialogTexts
 import com.example.storichallenge.databinding.FragmentPasswordBinding
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.navigateTo
@@ -25,6 +27,17 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, PasswordViewModel
         with(viewModel) {
             onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
                 navigateTo(navEvent)
+            }
+            onGetShowError().observe(viewLifecycleOwner) { error ->
+                showMessageDialog(
+                    DialogTexts(
+                        message = error,
+                        primaryButtonText = getString(R.string.txt_try_later)
+                    )
+                )
+            }
+            onSaveLocalPassword().observe(viewLifecycleOwner) {
+                viewModel.navigateToCameraUsageWarning()
             }
         }
     }
@@ -47,7 +60,7 @@ class PasswordFragment : BaseFragment<FragmentPasswordBinding, PasswordViewModel
         }
 
         binding.btnContinue.debounceClick {
-            viewModel.navigateToCameraUsageWarning()
+            viewModel.saveLocalPassword(binding.passwordLayout.rePassword.text.toString())
         }
     }
 
