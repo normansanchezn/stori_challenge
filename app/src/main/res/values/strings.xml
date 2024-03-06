@@ -49,4 +49,6 @@
     <string name="txt_total_balance">Balance total</string>
     <string name="txt_home">Inicio</string>
     <string name="txt_dummy_amount">$65,000.00</string>
+    <string name="txt_transaction_history_title">Historial de transacciones</string>
+    <string name="txt_dummy_date">30 May 8:00 PM</string>
 </resources>

@@ -125,4 +125,10 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="TextAppearance.Stori.Body.Small" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">13sp</item>
+        <item name="lineHeight">16dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>
