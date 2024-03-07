@@ -1,6 +1,7 @@
 package com.example.storichallenge.modules.account.data.dataSource.local
 
 import android.util.Log
+import androidx.room.Room
 import com.example.storichallenge.data.database.local.dao.AccountDao
 import com.example.storichallenge.data.database.local.entities.AccountEntity
 import com.example.storichallenge.extensions.TAG
@@ -63,6 +64,14 @@ class LocalAccountDS @Inject constructor(
             RoomOperation.SuccessOperation
         } catch (e: Exception) {
             Log.i(TAG, "updateLocalPassword: ${e.message}")
+            RoomOperation.ErrorOperation
+        }
+
+    override suspend fun deleteAccount(): RoomOperation =
+        try {
+            localDataSource.delete()
+            RoomOperation.SuccessOperation
+        } catch (e: Exception) {
             RoomOperation.ErrorOperation
         }
 }

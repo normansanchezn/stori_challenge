@@ -15,7 +15,6 @@ import com.example.storichallenge.modules.home.HomeActivity
 import com.example.storichallenge.modules.signIn.presentation.viewModel.SignInViewModel
 import com.example.storichallenge.utils.StoriPatterns
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 @AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {

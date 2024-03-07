@@ -140,4 +140,19 @@ class RemoteAccountDS @Inject constructor(
             .conflate()
     }
 
+    override suspend fun signOutFromFirebase(): Flow<FirebaseResult> {
+        return callbackFlow {
+            try {
+                firebaseAuthInstance.signOut()
+                trySend(FirebaseResult.FirebaseSuccessOperation)
+                close()
+            } catch (e: Exception) {
+                trySend(FirebaseResult.FirebaseErrorOperation)
+                close()
+            }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
+
 }

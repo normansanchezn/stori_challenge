@@ -11,4 +11,6 @@ interface LocalAccountDataSource {
     suspend fun updateLocalPassword(email: String?, password: String): RoomOperation
     suspend fun updateLocalIdPhotoBase64(email: String?, idPhotoBase64: String?): RoomOperation
 
+    suspend fun deleteAccount(): RoomOperation
+
 }

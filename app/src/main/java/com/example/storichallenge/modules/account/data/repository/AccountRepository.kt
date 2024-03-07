@@ -1,5 +1,6 @@
 package com.example.storichallenge.modules.account.data.repository
 
+import androidx.room.Room
 import com.example.storichallenge.modules.account.data.dataSource.local.LocalAccountDataSource
 import com.example.storichallenge.modules.account.data.dataSource.remote.RemoteAccountDataSource
 import com.example.storichallenge.modules.account.data.model.Account
@@ -45,4 +46,9 @@ class AccountRepository @Inject constructor(
 
     suspend fun getTransactionHistory(email: String?): Flow<ResultFirebase<List<TransactionItem>>> =
         remoteAccountDataSource.getListOfTransactions(email)
+
+    suspend fun deleteAccount(): RoomOperation = localAccountDataSource.deleteAccount()
+
+    suspend fun signOutFromFirebase(): Flow<FirebaseResult> =
+        remoteAccountDataSource.signOutFromFirebase()
 }

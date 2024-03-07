@@ -30,4 +30,7 @@ interface AccountDao {
             "WHERE email=:email")
     suspend fun updateIdPhoto(email: String?, idPhoto: String?)
 
+    @Query("DELETE FROM AccountEntity")
+    suspend fun delete()
+
 }

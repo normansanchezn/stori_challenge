@@ -4,6 +4,6 @@
     <item android:id="@+id/menu_help"
         android:title=""
         android:contentDescription="Help"
-        android:icon="@drawable/icon_transfer"
+        android:icon="@drawable/icon_profile"
         app:showAsAction="always" />
 </menu>

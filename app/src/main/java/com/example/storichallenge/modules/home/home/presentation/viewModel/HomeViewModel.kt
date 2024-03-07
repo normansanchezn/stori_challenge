@@ -2,7 +2,9 @@ package com.example.storichallenge.modules.home.home.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseViewModel
+import com.example.storichallenge.base.model.NavigationAction
 import com.example.storichallenge.extensions.safeSetValue
 import com.example.storichallenge.modules.account.data.model.Account
 import com.example.storichallenge.modules.account.data.model.AccountBalance
@@ -44,6 +46,14 @@ class HomeViewModel @Inject constructor(
                     }
                 }
         }
+    }
+
+    fun navigateToProfile() {
+        onNavigationActionMLD.safeSetValue(
+            NavigationAction(
+                R.id.action_homeFragment_to_profileFragment
+            )
+        )
     }
 
     fun getTransactionHistory() {

@@ -61,5 +61,10 @@
     <string name="txt_password">Contraseña</string>
     <string name="txt_enter_stori">Stori Challenge</string>
     <string name="txt_scan_fingerprint">Escanea tu huella para ingresar</string>
-    <string name="txt_use_password">USAR CONTRASEÑA</string>Entra a tu app/string>
+    <string name="txt_use_password">USAR CONTRASEÑA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_sign_out">Cerrar sesión</string>
+    <string name="txt_last_name">Apellido</string>
+    <string name="txt_profile">Perfil</string>Entra a tu app/string>
 </resources>

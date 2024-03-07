@@ -6,6 +6,8 @@ import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.constants.StoriConstants.TRANSACTION_ITEM_BOTTOM_SHEET
 import com.example.storichallenge.databinding.FragmentHomeBinding
+import com.example.storichallenge.extensions.navigateTo
+import com.example.storichallenge.extensions.setOptionsMenu
 import com.example.storichallenge.extensions.setUpFragmentHomeToolBar
 import com.example.storichallenge.extensions.toMoneyFormat
 import com.example.storichallenge.extensions.viewBinding
@@ -30,6 +32,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             binding.toolbar.toolbarSingleTitle,
             getString(R.string.txt_home)
         )
+        setOptionsMenu(menuHomeCallback = {
+            viewModel.navigateToProfile()
+        })
         configTransactionHistoryRecycler()
         viewModel.getTotalBalance()
         viewModel.getTransactionHistory()
@@ -51,6 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
             onGetTransactionHistory().observe(viewLifecycleOwner) { transactionHistory ->
                 transactionHistoryAdapter.setData(transactionHistory)
+            }
+            onNavigationEvent().observe(viewLifecycleOwner) { navEvent ->
+                navigateTo(navEvent)
             }
         }
     }
