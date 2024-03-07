@@ -51,7 +51,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun initObservers() {
         with(viewModel) {
             onGetTotalBalance().observe(viewLifecycleOwner) { accountBalance ->
-                binding.amount.text = accountBalance.balance?.toDouble()?.toMoneyFormat()
+
+                binding.amount.text = if (accountBalance.balance == null || accountBalance.balance == "null") {
+                    0.0.toMoneyFormat()
+                } else {
+                    accountBalance.balance.toDouble().toMoneyFormat()
+                }
             }
 
             onGetTransactionHistory().observe(viewLifecycleOwner) { transactionHistory ->

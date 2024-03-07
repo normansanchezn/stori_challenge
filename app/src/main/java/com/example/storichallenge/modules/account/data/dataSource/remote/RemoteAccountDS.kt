@@ -122,6 +122,39 @@ class RemoteAccountDS @Inject constructor(
             .conflate()
     }
 
+    override suspend fun getRemoteAccount(email: String): Flow<ResultFirebase<Account>> {
+        return callbackFlow {
+            val docRef = firestoreInstance
+                .collection(COLLECTION_ACCOUNTS).document(email)
+            docRef.get().addOnSuccessListener { document ->
+                if (document != null) {
+                    trySend(
+                        ResultFirebase.Success(
+                            Account(
+                                email = document.data?.get("email").toString(),
+                                name = document.data?.get("name").toString(),
+                                lastName = document.data?.get("lastName").toString(),
+                                password = document.data?.get("password").toString(),
+                                idPhoto = document.data?.get("idPhoto").toString(),
+                            )
+                        )
+                    )
+                    close()
+                } else {
+                    trySend(
+                        ResultFirebase.Error(
+                            "",
+                            Account("",null,null,null,null)
+                        )
+                    )
+                    close()
+                }
+            }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
+
     override suspend fun getListOfTransactions(email: String?)
     : Flow<ResultFirebase<List<TransactionItem>>> {
         val transactionList = mutableListOf<TransactionItem>()

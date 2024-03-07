@@ -1,6 +1,7 @@
 package com.example.storichallenge.modules.account.data.dataSource.local
 
 import com.example.storichallenge.data.database.local.entities.AccountEntity
+import com.example.storichallenge.modules.account.data.model.Account
 import com.example.storichallenge.modules.account.data.model.RoomOperation
 
 interface LocalAccountDataSource {
@@ -10,7 +11,7 @@ interface LocalAccountDataSource {
     suspend fun updatePersonalData(email: String?, name: String, lastName: String): RoomOperation
     suspend fun updateLocalPassword(email: String?, password: String): RoomOperation
     suspend fun updateLocalIdPhotoBase64(email: String?, idPhotoBase64: String?): RoomOperation
-
     suspend fun deleteAccount(): RoomOperation
+    suspend fun createLocalAccountWithRemoteData(account: Account): RoomOperation
 
 }

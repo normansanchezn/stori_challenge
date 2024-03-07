@@ -59,6 +59,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
                 )
             }
             onLogin().observe(viewLifecycleOwner) {
+                viewModel.getRemoteAccount(binding.email.text.toString())
+            }
+
+            onGetRemoteAccount().observe(viewLifecycleOwner) {
                 requireActivity().finish()
                 startActivity(Intent(requireContext(), HomeActivity::class.java))
             }
@@ -75,5 +79,4 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
         )
         setOptionsMenu()
     }
-
 }

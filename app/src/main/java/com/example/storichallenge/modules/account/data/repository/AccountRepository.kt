@@ -51,4 +51,10 @@ class AccountRepository @Inject constructor(
 
     suspend fun signOutFromFirebase(): Flow<FirebaseResult> =
         remoteAccountDataSource.signOutFromFirebase()
+
+    suspend fun getRemoteAccount(email: String): Flow<ResultFirebase<Account>> =
+        remoteAccountDataSource.getRemoteAccount(email)
+
+    suspend fun createLocalAccountWithRemoteData(account: Account): RoomOperation =
+        localAccountDataSource.createLocalAccountWithRemoteData(account)
 }

@@ -15,5 +15,6 @@ interface RemoteAccountDataSource {
     suspend fun getTotalBalance(email: String?): Flow<ResultFirebase<AccountBalance>>
     suspend fun getListOfTransactions(email: String?): Flow<ResultFirebase<List<TransactionItem>>>
     suspend fun signOutFromFirebase(): Flow<FirebaseResult>
+    suspend fun getRemoteAccount(email: String): Flow<ResultFirebase<Account>>
 
 }

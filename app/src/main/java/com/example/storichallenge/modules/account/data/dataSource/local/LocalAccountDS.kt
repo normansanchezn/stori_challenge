@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.storichallenge.data.database.local.dao.AccountDao
 import com.example.storichallenge.data.database.local.entities.AccountEntity
 import com.example.storichallenge.extensions.TAG
+import com.example.storichallenge.modules.account.data.model.Account
 import com.example.storichallenge.modules.account.data.model.RoomOperation
 import javax.inject.Inject
 import kotlin.reflect.typeOf
@@ -72,6 +73,22 @@ class LocalAccountDS @Inject constructor(
             localDataSource.delete()
             RoomOperation.SuccessOperation
         } catch (e: Exception) {
+            RoomOperation.ErrorOperation
+        }
+
+    override suspend fun createLocalAccountWithRemoteData(account: Account): RoomOperation =
+        try {
+            localDataSource.createAccount(
+                AccountEntity(
+                    email = account.email,
+                    name = account.name,
+                    password = account.password,
+                    idPhoto = account.idPhoto,
+                    lastName = account.lastName
+                )
+            )
+            RoomOperation.SuccessOperation
+        }catch (e: Exception) {
             RoomOperation.ErrorOperation
         }
 }
