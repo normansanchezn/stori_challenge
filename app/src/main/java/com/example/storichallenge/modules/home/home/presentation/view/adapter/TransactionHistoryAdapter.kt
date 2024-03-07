@@ -30,6 +30,7 @@ class TransactionHistoryAdapter: RecyclerView.Adapter<TransactionHistoryAdapter.
 
     fun setData(itemList: List<TransactionItem>) {
         listItems = itemList
+        notifyDataSetChanged()
     }
 
     inner class TransactionHistoryViewHolder(private val binding: ItemTransactionHistoryBinding)

@@ -12,6 +12,7 @@ import com.example.storichallenge.modules.account.data.model.Account
 import com.example.storichallenge.modules.account.data.model.AccountBalance
 import com.example.storichallenge.modules.account.data.model.FirebaseResult
 import com.example.storichallenge.modules.account.data.model.ResultFirebase
+import com.example.storichallenge.modules.home.data.mock.listMock
 import com.example.storichallenge.modules.home.data.model.TransactionItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -123,20 +124,17 @@ class RemoteAccountDS @Inject constructor(
 
     override suspend fun getListOfTransactions(email: String?)
     : Flow<ResultFirebase<List<TransactionItem>>> {
+        val transactionList = mutableListOf<TransactionItem>()
+        val collections = 4
+
         return callbackFlow {
             val docRef = firestoreInstance
                 .collection(COLLECTION_TRANSACTIONS).document(email!!)
 
-            docRef.get().addOnCompleteListener { document ->
-
-                trySend(ResultFirebase.Success(
-                    listOf(TransactionItem(
-                        concept = null,
-                        amount = null,
-                        timestamp = null
-                    ))
-                ))
-            }
+            trySend(ResultFirebase.Success(
+                listMock()
+            ))
+            close()
             awaitClose { cancel() }
         }.flowOn(dispatcher)
             .conflate()

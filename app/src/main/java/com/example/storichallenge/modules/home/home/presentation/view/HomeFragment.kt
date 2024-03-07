@@ -36,17 +36,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = transactionHistoryAdapter
         }
-        // transactionHistoryAdapter.setData(listMock())
     }
 
-    override fun initListeners() {
-
-    }
 
     override fun initObservers() {
         with(viewModel) {
             onGetTotalBalance().observe(viewLifecycleOwner) { accountBalance ->
                 binding.amount.text = accountBalance.balance?.formatCurrency()
+            }
+
+            onGetTransactionHistory().observe(viewLifecycleOwner) { transactionHistory ->
+                transactionHistoryAdapter.setData(transactionHistory)
             }
         }
     }
