@@ -4,12 +4,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storichallenge.R
 import com.example.storichallenge.base.BaseFragment
+import com.example.storichallenge.constants.StoriConstants.TRANSACTION_ITEM_BOTTOM_SHEET
 import com.example.storichallenge.databinding.FragmentHomeBinding
-import com.example.storichallenge.extensions.formatCurrency
 import com.example.storichallenge.extensions.setUpFragmentHomeToolBar
+import com.example.storichallenge.extensions.toMoneyFormat
 import com.example.storichallenge.extensions.viewBinding
+import com.example.storichallenge.modules.home.data.model.TransactionItem
+import com.example.storichallenge.modules.home.home.presentation.bottomsheet.TransactionBottomSheet
 import com.example.storichallenge.modules.home.home.presentation.view.adapter.TransactionHistoryAdapter
 import com.example.storichallenge.modules.home.home.presentation.viewModel.HomeViewModel
+import com.example.storichallenge.modules.home.home.utils.TransactionObject
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         FragmentHomeBinding.inflate(layoutInflater)
     }
     override val viewModel: HomeViewModel by viewModels()
-    private val transactionHistoryAdapter by lazy { TransactionHistoryAdapter() }
+    private val transactionHistoryAdapter by lazy { TransactionHistoryAdapter(onItemClick = onItemClick) }
 
     override fun setupView() {
         setUpFragmentHomeToolBar(
@@ -42,12 +46,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun initObservers() {
         with(viewModel) {
             onGetTotalBalance().observe(viewLifecycleOwner) { accountBalance ->
-                binding.amount.text = accountBalance.balance?.formatCurrency()
+                binding.amount.text = accountBalance.balance?.toDouble()?.toMoneyFormat()
             }
 
             onGetTransactionHistory().observe(viewLifecycleOwner) { transactionHistory ->
                 transactionHistoryAdapter.setData(transactionHistory)
             }
         }
+    }
+
+    private val onItemClick: TransactionObject = { transactionItem ->
+        showTransactionBottomSheetDialog(transactionItem)
+    }
+
+    private fun showTransactionBottomSheetDialog(transactionItem: TransactionItem) {
+        TransactionBottomSheet(transactionItem).show(
+            childFragmentManager,
+            TRANSACTION_ITEM_BOTTOM_SHEET
+        )
     }
 }

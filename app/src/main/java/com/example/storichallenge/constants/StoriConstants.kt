@@ -13,4 +13,5 @@ object StoriConstants {
     const val NAME = "name"
     const val LAST_NAME = "lastName"
     const val PASSWORD = "password"
+    const val TRANSACTION_ITEM_BOTTOM_SHEET = "transactionItemBottomSheet"
 }

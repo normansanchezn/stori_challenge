@@ -6,10 +6,15 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import com.example.storichallenge.R
 import com.example.storichallenge.databinding.ItemTransactionHistoryBinding
+import com.example.storichallenge.extensions.debounceClick
+import com.example.storichallenge.extensions.toMoneyFormat
 import com.example.storichallenge.modules.home.data.model.TransactionItem
 import com.example.storichallenge.modules.home.data.model.TypeConcept
+import com.example.storichallenge.modules.home.home.utils.TransactionObject
 
-class TransactionHistoryAdapter: RecyclerView.Adapter<TransactionHistoryAdapter.TransactionHistoryViewHolder>() {
+class TransactionHistoryAdapter(
+    private val onItemClick: TransactionObject
+) : RecyclerView.Adapter<TransactionHistoryAdapter.TransactionHistoryViewHolder>() {
 
     private var listItems = listOf<TransactionItem>()
 
@@ -38,15 +43,20 @@ class TransactionHistoryAdapter: RecyclerView.Adapter<TransactionHistoryAdapter.
 
             fun bind(transactionItem: TransactionItem) {
                 with(binding) {
-                    amount.text = transactionItem.amount.toString()
+                    root.debounceClick {
+                        onItemClick.invoke(transactionItem)
+                    }
+                    amount.text = transactionItem.amount?.toMoneyFormat()
                     dateOfTransaction.text = transactionItem.timestamp
                     concept.text = transactionItem.concept
 
                     when(concept.text) {
                         TypeConcept.TRANSFER.typeText -> {
+                            amount.setTextColor(binding.amount.context.getColor(R.color.stori_primary))
                             iconTransfer.setImageDrawable(AppCompatResources.getDrawable(binding.iconTransfer.context, R.drawable.icon_transfer))
                         }
                         TypeConcept.WITHDRAW.typeText -> {
+                            amount.setTextColor(binding.amount.context.getColor(R.color.red))
                             iconTransfer.setImageDrawable(AppCompatResources.getDrawable(binding.iconTransfer.context, R.drawable.icon_withdraw))
                         }
                     }
