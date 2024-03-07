@@ -69,7 +69,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/saveEmailButton"
+        android:id="@+id/loginButton"
         style="@style/Widget.Stori.Button.Primary"
         android:layout_marginHorizontal="@dimen/dp_16"
         android:layout_marginBottom="@dimen/dp_16"

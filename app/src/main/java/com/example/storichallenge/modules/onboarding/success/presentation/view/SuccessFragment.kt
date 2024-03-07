@@ -29,10 +29,4 @@ class SuccessFragment : BaseFragment<FragmentSuccessBinding, SuccessViewModel>()
             }
         }
     }
-
-    override fun onDestroy() {
-        binding.animationView.cancelAnimation()
-        super.onDestroy()
-    }
-
 }
