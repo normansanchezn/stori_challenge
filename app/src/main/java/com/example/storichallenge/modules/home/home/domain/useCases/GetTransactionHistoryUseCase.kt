@@ -9,9 +9,6 @@ import javax.inject.Inject
 class GetTransactionHistoryUseCase @Inject constructor(
     private val repository: AccountRepository
 ) {
-
     suspend fun invoke(email: String): Flow<ResultFirebase<List<TransactionItem>>> =
         repository.getTransactionHistory(email)
-
-
 }

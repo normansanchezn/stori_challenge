@@ -68,4 +68,5 @@
     <string name="txt_profile">Profile</string>
     <string name="txt_welcome">Welcome!</string>
     <string name="txt_login_description">Create your account on Stori or Sign in</string>
+    <string name="txt_transaction_history_placeholder">No information to display.</string>
 </resources>

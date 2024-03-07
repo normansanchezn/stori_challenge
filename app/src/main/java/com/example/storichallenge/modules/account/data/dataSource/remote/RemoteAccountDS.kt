@@ -157,8 +157,6 @@ class RemoteAccountDS @Inject constructor(
 
     override suspend fun getListOfTransactions(email: String?)
     : Flow<ResultFirebase<List<TransactionItem>>> {
-        val transactionList = mutableListOf<TransactionItem>()
-        val collections = 4
 
         return callbackFlow {
             val docRef = firestoreInstance
