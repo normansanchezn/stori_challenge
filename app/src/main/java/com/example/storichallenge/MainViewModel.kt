@@ -4,20 +4,33 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.storichallenge.base.BaseViewModel
 import com.example.storichallenge.extensions.safeSetValue
+import com.example.storichallenge.modules.account.data.model.Account
+import com.example.storichallenge.modules.account.domain.useCases.GetLocalAccountUseCase
 import com.example.storichallenge.utils.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(): BaseViewModel() {
+class MainViewModel @Inject constructor(
+    private val getLocalAccountUseCase: GetLocalAccountUseCase
+): BaseViewModel() {
 
     private val onNavigateTo = SingleLiveData<StartNavigation>()
+    private var localAccount: Account ?= null
 
     fun setNavigationDest() {
         viewModelScope.launch {
-            // validate if has account
-            onNavigateTo.safeSetValue(StartNavigation.NavigateLogin)
+            val localAccountDeferred = async { getLocalAccountUseCase.invoke() }
+            localAccount = localAccountDeferred.await()
+            onNavigateTo.safeSetValue(
+                if (localAccount == null) {
+                    StartNavigation.NavigateLogin
+                } else {
+                    StartNavigation.NavigateUnlock
+                }
+            )
         }
     }
 

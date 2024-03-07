@@ -21,7 +21,11 @@
         android:id="@+id/unlockFragment"
         android:name="com.example.storichallenge.modules.unlock.presentation.view.UnlockFragment"
         android:label="fragment_unlock"
-        tools:layout="@layout/fragment_unlock" />
+        tools:layout="@layout/fragment_unlock" >
+        <action
+            android:id="@+id/action_unlockFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/permissionsFragment"
         android:name="com.example.storichallenge.modules.onboarding.permissions.presentation.view.PermissionsFragment"

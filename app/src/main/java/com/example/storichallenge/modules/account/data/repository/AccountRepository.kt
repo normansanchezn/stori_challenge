@@ -3,7 +3,9 @@ package com.example.storichallenge.modules.account.data.repository
 import com.example.storichallenge.modules.account.data.dataSource.local.LocalAccountDataSource
 import com.example.storichallenge.modules.account.data.dataSource.remote.RemoteAccountDataSource
 import com.example.storichallenge.modules.account.data.model.Account
+import com.example.storichallenge.modules.account.data.model.FirebaseResult
 import com.example.storichallenge.modules.account.data.model.RoomOperation
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(
@@ -26,10 +28,13 @@ class AccountRepository @Inject constructor(
     suspend fun updateLocalIdPhoto(email: String?, idPhotoBase64: String?) =
         localAccountDataSource.updateLocalIdPhotoBase64(email, idPhotoBase64)
 
-    suspend fun createRemoteUserAuth(email: String?, password: String?) =
+    suspend fun createRemoteUserAuth(email: String?, password: String?): Flow<FirebaseResult> =
         remoteAccountDataSource.createRemoteUserAuth(email, password)
 
-    suspend fun saveRemoteAccount(account: Account?) =
+    suspend fun saveRemoteAccount(account: Account?): Flow<FirebaseResult> =
         remoteAccountDataSource.saveRemoteAccount(account)
+
+    suspend fun loginWithAccount(email: String, password: String): Flow<FirebaseResult> =
+        remoteAccountDataSource.loginWithAccount(email, password)
 
 }

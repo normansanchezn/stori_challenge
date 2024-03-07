@@ -1,10 +1,12 @@
 package com.example.storichallenge.modules.onboarding.success.presentation.view
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import com.example.storichallenge.base.BaseFragment
 import com.example.storichallenge.databinding.FragmentSuccessBinding
 import com.example.storichallenge.extensions.debounceClick
 import com.example.storichallenge.extensions.viewBinding
+import com.example.storichallenge.modules.home.HomeActivity
 import com.example.storichallenge.modules.onboarding.success.presentation.viewModel.SuccessViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,14 +23,16 @@ class SuccessFragment : BaseFragment<FragmentSuccessBinding, SuccessViewModel>()
 
             btnFinish.debounceClick {
                 requireActivity().finish()
-                // Start new activity
+                startActivity(
+                    Intent(requireContext(), HomeActivity::class.java)
+                )
             }
         }
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         binding.animationView.cancelAnimation()
+        super.onDestroy()
     }
 
 }

@@ -20,6 +20,8 @@ import com.example.storichallenge.modules.onboarding.utils.OnboardingConstants
 import com.example.storichallenge.utils.SingleLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -78,39 +80,37 @@ class PreviewImageViewModel @Inject constructor(
 
     fun createRemoteUser() {
         viewModelScope.launch {
-            when(
-                createUserAuthUseCase.invoke(
-                    localAccount?.email,
-                    localAccount?.password
-                )
-            ) {
-                FirebaseResult.FirebaseErrorOperation -> onShowErrorMLD.safeSetValue(
-                    "No se pudo crear tu cuenta, inténtelo más tarde."
-                )
-                FirebaseResult.FirebaseSuccessOperation -> {
-                    saveRemoteUser()
+            createUserAuthUseCase.invoke(localAccount?.email, localAccount?.password)
+                .onStart { onShowLoadingMLD.safeSetValue(true) }
+                .onCompletion { onShowLoadingMLD.safeSetValue(false) }
+                .collect { result ->
+                    when(result) {
+                        FirebaseResult.FirebaseErrorOperation ->  {
+                            onShowErrorMLD.safeSetValue("No se pudo crear tu cuenta, intentalo más tarde")
+                        }
+                        FirebaseResult.FirebaseSuccessOperation -> {
+                            saveRemoteUser()
+                        }
+                    }
                 }
-
-                FirebaseResult.FirebasePendingOperation -> {
-                    // do nothing :P
-                }
-            }
         }
     }
 
     private fun saveRemoteUser() {
         viewModelScope.launch {
-            when(saveRemoteAccountUseCase.invoke(localAccount)) {
-                FirebaseResult.FirebaseErrorOperation -> onShowErrorMLD.safeSetValue(
-                    "No se pudo crear tu cuenta, inténtelo más tarde."
-                )
-                FirebaseResult.FirebasePendingOperation -> {
-                    // do nothing :P
+            saveRemoteAccountUseCase.invoke(localAccount)
+                .onStart { onShowLoadingMLD.safeSetValue(true) }
+                .onCompletion { onShowLoadingMLD.safeSetValue(false) }
+                .collect { result ->
+                    when(result) {
+                        FirebaseResult.FirebaseErrorOperation ->  {
+                            onShowErrorMLD.safeSetValue("No se pudo crear tu cuenta, intentalo más tarde")
+                        }
+                        FirebaseResult.FirebaseSuccessOperation -> {
+                            onCreateUser.safeSetValue(Unit)
+                        }
+                    }
                 }
-                FirebaseResult.FirebaseSuccessOperation -> {
-                    onCreateUser.safeSetValue(Unit)
-                }
-            }
         }
     }
 

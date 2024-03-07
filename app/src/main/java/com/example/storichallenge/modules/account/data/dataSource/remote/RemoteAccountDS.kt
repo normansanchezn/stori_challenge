@@ -12,36 +12,45 @@ import com.example.storichallenge.modules.account.data.model.Account
 import com.example.storichallenge.modules.account.data.model.FirebaseResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class RemoteAccountDS @Inject constructor(
     private val firebaseAuthInstance: FirebaseAuth,
-    private val firestoreInstance: FirebaseFirestore
+    private val firestoreInstance: FirebaseFirestore,
+    private val dispatcher: CoroutineDispatcher
 ): RemoteAccountDataSource {
-    override suspend fun createRemoteUserAuth(email: String?, password: String?): FirebaseResult =
-        try {
-            if (email == null && password == null) {
-                FirebaseResult.FirebaseErrorOperation
-            } else {
-                firebaseAuthInstance
-                    .createUserWithEmailAndPassword(
-                        email!!, password!!
-                    ).addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            FirebaseResult.FirebaseSuccessOperation
-                        } else {
-                            FirebaseResult.FirebaseErrorOperation
-                        }
-                    }
-                FirebaseResult.FirebasePendingOperation
+    override suspend fun createRemoteUserAuth(email: String?, password: String?): Flow<FirebaseResult> {
+        return callbackFlow {
+            if (email == null || password == null) {
+                trySend(FirebaseResult.FirebaseErrorOperation)
+                close()
             }
-        } catch (e: Exception) {
-            Log.i(TAG, "createRemoteUserAuth: ${e.message}")
-            FirebaseResult.FirebaseErrorOperation
-        }
+            firebaseAuthInstance
+                .createUserWithEmailAndPassword(
+                    email!!, password!!
+                ).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        trySend(FirebaseResult.FirebaseSuccessOperation)
+                        close()
+                    } else {
+                        trySend(FirebaseResult.FirebaseErrorOperation)
+                        close()
+                    }
+                }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
 
-    override suspend fun saveRemoteAccount(account: Account?): FirebaseResult =
-        try {
+    override suspend fun saveRemoteAccount(account: Account?): Flow<FirebaseResult> {
+        return callbackFlow {
             firestoreInstance.collection(COLLECTION_ACCOUNTS)
                 .document(account?.email!!).set(
                     hashMapOf(
@@ -51,10 +60,35 @@ class RemoteAccountDS @Inject constructor(
                         LAST_NAME to account.lastName,
                         PASSWORD to account.password
                     )
-                )
+                ).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        trySend(FirebaseResult.FirebaseSuccessOperation)
+                        close()
+                    } else {
+                        trySend(FirebaseResult.FirebaseErrorOperation)
+                        close()
+                    }
+                }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
 
-            FirebaseResult.FirebaseSuccessOperation
-        } catch (e: Exception) {
-            FirebaseResult.FirebaseErrorOperation
-        }
+    override suspend fun loginWithAccount(email: String, password: String): Flow<FirebaseResult> {
+        return callbackFlow {
+            firebaseAuthInstance
+                .signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        trySend(FirebaseResult.FirebaseSuccessOperation)
+                        close()
+                    } else {
+                        trySend(FirebaseResult.FirebaseErrorOperation)
+                        close()
+                    }
+                }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
 }

@@ -51,10 +51,15 @@
     <string name="txt_dummy_amount">$65,000.00</string>
     <string name="txt_transaction_history_title">Historial de transacciones</string>
     <string name="txt_dummy_date">30 May 8:00 PM</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_sign_in_title">Inicia sesión</string>
     <string name="txt_write_u_password_copy">Escribe tu contraseña</string>
     <string name="txt_hint_email_copy">Escribe tu correo electrónico</string>
     <string name="txt_try_later">Intentar más tarde</string>
+    <string name="txt_see_again">¡Bienvenido de nuevo!</string>
+    <string name="txt_select_unlock_description">Selecciona la forma de ingresar a tu cuenta</string>
+    <string name="txt_biometric_auth">Autenticación biométrica</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="txt_enter_stori">Stori Challenge</string>
+    <string name="txt_scan_fingerprint">Escanea tu huella para ingresar</string>
+    <string name="txt_use_password">USAR CONTRASEÑA</string>Entra a tu app/string>
 </resources>
