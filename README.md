@@ -19,32 +19,28 @@ The following issues needed to be addressed:
 - Store collected data in Firebase database.
 - Create test data in Firebase for testing user login without account creation.
 
-## Points to Evaluate
-The following aspects will be assessed:
-- Adherence to SOLID principles and Clean Code practices.
-- Implementation of architectural patterns such as MVP or MVVM.
-- Project organization and structure.
-- Overall functionality of the application.
-
-## Solution
-The solution provided meets the requirements outlined in the challenge. The project structure follows best practices and architectural patterns for maintainability and scalability.
-
 ### Technologies Used
 - Android SDK
-- Firebase for database management
-- [Insert any additional libraries or frameworks used]
+- Navigation
+- Room
+- Lottie
+- Hilt
+- Firebase for database management and authentication.
 
 ## How to Run
-[Provide instructions on how to run the application locally, including any setup or configuration steps.]
+- Clone repo
+- Add project into Android Studio
+- Run project
+
+### Credentials
+- user: nsanchez@stori.mx
+- password: SimplePlan$04
 
 ## Future Improvements
-[Outline any potential enhancements or features that could be added in the future.]
+- Add a loader to the entire project
+- Add user exist validation.
+- Add close session.
+- Profile View
+- Improve Transaction History
+- Unit test
 
-## Contributors
-[List of contributors involved in the project, if applicable.]
-
-## License
-[Specify the license under which the project is distributed, if applicable.]
-
-## Feedback
-Feedback on the implementation is highly appreciated. Please feel free to submit any suggestions or improvements.
