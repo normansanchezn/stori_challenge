@@ -3,8 +3,11 @@ package com.example.storichallenge.modules.account.data.repository
 import com.example.storichallenge.modules.account.data.dataSource.local.LocalAccountDataSource
 import com.example.storichallenge.modules.account.data.dataSource.remote.RemoteAccountDataSource
 import com.example.storichallenge.modules.account.data.model.Account
+import com.example.storichallenge.modules.account.data.model.AccountBalance
 import com.example.storichallenge.modules.account.data.model.FirebaseResult
+import com.example.storichallenge.modules.account.data.model.ResultFirebase
 import com.example.storichallenge.modules.account.data.model.RoomOperation
+import com.example.storichallenge.modules.home.data.model.TransactionItem
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -37,4 +40,9 @@ class AccountRepository @Inject constructor(
     suspend fun loginWithAccount(email: String, password: String): Flow<FirebaseResult> =
         remoteAccountDataSource.loginWithAccount(email, password)
 
+    suspend fun getTotalBalance(email: String?): Flow<ResultFirebase<AccountBalance>> =
+        remoteAccountDataSource.getTotalBalance(email)
+
+    suspend fun getTransactionHistory(email: String?): Flow<ResultFirebase<List<TransactionItem>>> =
+        remoteAccountDataSource.getListOfTransactions(email)
 }

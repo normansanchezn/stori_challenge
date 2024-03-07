@@ -1,15 +1,18 @@
 package com.example.storichallenge.modules.account.data.dataSource.remote
 
-import android.util.Log
 import com.example.storichallenge.constants.StoriConstants.COLLECTION_ACCOUNTS
+import com.example.storichallenge.constants.StoriConstants.COLLECTION_BALANCE
+import com.example.storichallenge.constants.StoriConstants.COLLECTION_TRANSACTIONS
 import com.example.storichallenge.constants.StoriConstants.EMAIL
 import com.example.storichallenge.constants.StoriConstants.ID_PHOTO
 import com.example.storichallenge.constants.StoriConstants.LAST_NAME
 import com.example.storichallenge.constants.StoriConstants.NAME
 import com.example.storichallenge.constants.StoriConstants.PASSWORD
-import com.example.storichallenge.extensions.TAG
 import com.example.storichallenge.modules.account.data.model.Account
+import com.example.storichallenge.modules.account.data.model.AccountBalance
 import com.example.storichallenge.modules.account.data.model.FirebaseResult
+import com.example.storichallenge.modules.account.data.model.ResultFirebase
+import com.example.storichallenge.modules.home.data.model.TransactionItem
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineDispatcher
@@ -91,4 +94,52 @@ class RemoteAccountDS @Inject constructor(
         }.flowOn(dispatcher)
             .conflate()
     }
+
+
+    override suspend fun getTotalBalance(email: String?): Flow<ResultFirebase<AccountBalance>> {
+        return callbackFlow {
+            val docRef = firestoreInstance
+                .collection(COLLECTION_BALANCE).document(email!!)
+
+            docRef.get().addOnSuccessListener { document ->
+                if (document != null) {
+                    trySend(
+                        ResultFirebase.Success(
+                            AccountBalance(
+                                document.data?.get("totalBalance").toString()
+                            )
+                        )
+                    )
+                    close()
+                } else {
+                    trySend(ResultFirebase.Error("Hola", AccountBalance(null)))
+                    close()
+                }
+            }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
+
+    override suspend fun getListOfTransactions(email: String?)
+    : Flow<ResultFirebase<List<TransactionItem>>> {
+        return callbackFlow {
+            val docRef = firestoreInstance
+                .collection(COLLECTION_TRANSACTIONS).document(email!!)
+
+            docRef.get().addOnCompleteListener { document ->
+
+                trySend(ResultFirebase.Success(
+                    listOf(TransactionItem(
+                        concept = null,
+                        amount = null,
+                        timestamp = null
+                    ))
+                ))
+            }
+            awaitClose { cancel() }
+        }.flowOn(dispatcher)
+            .conflate()
+    }
+
 }

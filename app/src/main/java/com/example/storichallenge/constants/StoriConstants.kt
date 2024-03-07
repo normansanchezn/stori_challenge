@@ -6,6 +6,8 @@ object StoriConstants {
     const val EMPTY_STRING = ""
     const val STORI_DATABASE_NAME = "StoriDatabase"
     const val COLLECTION_ACCOUNTS = "Accounts"
+    const val COLLECTION_BALANCE = "Balances"
+    const val COLLECTION_TRANSACTIONS = "TransactionHistory"
     const val EMAIL = "email"
     const val ID_PHOTO = "idPhoto"
     const val NAME = "name"
