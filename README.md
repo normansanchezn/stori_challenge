@@ -38,9 +38,23 @@ The following issues needed to be addressed:
 
 ## Future Improvements
 - Add a loader to the entire project
-- Add user exist validation.
-- Add close session.
-- Profile View
-- Improve Transaction History
 - Unit test
 
+## Architecture
+```mermaid
+
+---
+title: Architecture Android MVVM + CLEAN
+---
+graph TD;
+    View <-->ViewModel;
+    ViewModel --> UseCases;
+    ViewModel <--> LiveData;
+    UseCases <--> LocalRepository;
+    UseCases <--> RemoteRepository;
+    LocalRepository --> ROOM;
+    RemoteRepository <--> Firebase;
+```
+
+## Authors
+- [@NormanSN](https://www.linkedin.com/in/norman-sanchez-nolasco/) - Android Developer
