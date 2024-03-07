@@ -20,6 +20,32 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/stori_lottie" />
 
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.Stori.Title.Large"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/stori_primary_light"
+        android:text="@string/txt_welcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation_view" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/TextAppearance.Stori.Title.Small"
+        android:layout_width="@dimen/match_constraint"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_16"
+        android:layout_marginTop="4dp"
+        android:text="@string/txt_login_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
     <Button
         android:id="@+id/createAccount"
         style="@style/Widget.Stori.Button.Primary"

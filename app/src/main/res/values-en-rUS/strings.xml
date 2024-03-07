@@ -66,4 +66,6 @@
     <string name="txt_sign_out">Sign out</string>
     <string name="txt_last_name">Last Name</string>
     <string name="txt_profile">Profile</string>
+    <string name="txt_welcome">Welcome!</string>
+    <string name="txt_login_description">Create your account on Stori or Sign in</string>
 </resources>

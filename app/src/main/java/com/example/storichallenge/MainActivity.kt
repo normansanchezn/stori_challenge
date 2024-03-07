@@ -8,6 +8,7 @@ import com.example.storichallenge.MainViewModel.StartNavigation
 import com.example.storichallenge.MainViewModel.StartNavigation.NavigateLogin
 import com.example.storichallenge.MainViewModel.StartNavigation.NavigateUnlock
 import com.example.storichallenge.databinding.ActivityMainBinding
+import com.example.storichallenge.extensions.setWindowsSecurityFlags
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        this.setWindowsSecurityFlags()
         initViewModel()
         initListeners()
     }

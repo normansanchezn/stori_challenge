@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.storichallenge.R
 import com.example.storichallenge.databinding.HomeActivityBinding
+import com.example.storichallenge.extensions.setWindowsSecurityFlags
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -14,6 +15,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
         setupNavigation()
+        this.setWindowsSecurityFlags()
     }
 
     private fun setupNavigation() {

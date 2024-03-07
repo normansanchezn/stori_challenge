@@ -64,5 +64,7 @@
     <string name="txt_use_password">USAR CONTRASEÑA</string>
     <string name="txt_sign_out">Cerrar sesión</string>
     <string name="txt_last_name">Apellido</string>
-    <string name="txt_profile">Perfil</string>Entra a tu app/string>
+    <string name="txt_profile">Perfil</string>
+    <string name="txt_welcome">¡Bienvenido!</string>
+    <string name="txt_login_description">Crea tu cuenta en Stori o Inicia sesión</string>
 </resources>
