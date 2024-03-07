@@ -49,6 +49,10 @@ class PreviewImageFragment : BaseFragment<FragmentPreviewImageBinding, PreviewIm
             onUpdateLocalIdPhoto().observe(viewLifecycleOwner) {
                 viewModel.createRemoteUser()
             }
+
+            onCreateUser().observe(viewLifecycleOwner) {
+                viewModel.navigateToSuccessView()
+            }
         }
     }
 

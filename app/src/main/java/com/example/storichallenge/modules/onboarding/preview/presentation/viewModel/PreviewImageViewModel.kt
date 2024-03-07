@@ -10,8 +10,11 @@ import com.example.storichallenge.base.model.NavigationAction
 import com.example.storichallenge.extensions.parcelable
 import com.example.storichallenge.extensions.safeSetValue
 import com.example.storichallenge.modules.account.data.model.Account
+import com.example.storichallenge.modules.account.data.model.FirebaseResult
 import com.example.storichallenge.modules.account.data.model.RoomOperation
 import com.example.storichallenge.modules.account.domain.useCases.GetLocalAccountUseCase
+import com.example.storichallenge.modules.onboarding.preview.domain.useCases.CreateUserAuthUseCase
+import com.example.storichallenge.modules.onboarding.preview.domain.useCases.SaveRemoteAccountUseCase
 import com.example.storichallenge.modules.onboarding.preview.domain.useCases.UpdateLocalIdPhotoUseCase
 import com.example.storichallenge.modules.onboarding.utils.OnboardingConstants
 import com.example.storichallenge.utils.SingleLiveData
@@ -23,13 +26,15 @@ import javax.inject.Inject
 @HiltViewModel
 class PreviewImageViewModel @Inject constructor(
     private val getLocalAccountUseCase: GetLocalAccountUseCase,
-    private val updateLocalIdPhotoUseCase: UpdateLocalIdPhotoUseCase
-
+    private val updateLocalIdPhotoUseCase: UpdateLocalIdPhotoUseCase,
+    private val createUserAuthUseCase: CreateUserAuthUseCase,
+    private val saveRemoteAccountUseCase: SaveRemoteAccountUseCase
 ): BaseViewModel() {
 
     private val imageUri: SingleLiveData<Uri> = SingleLiveData()
     private val imageBase64VM: SingleLiveData<String> = SingleLiveData()
     private val onUpdateLocalIdPhoto: SingleLiveData<Unit> = SingleLiveData()
+    private val onCreateUser: SingleLiveData<Unit> = SingleLiveData()
     private var localAccount: Account?= null
 
     init {
@@ -72,7 +77,41 @@ class PreviewImageViewModel @Inject constructor(
     }
 
     fun createRemoteUser() {
+        viewModelScope.launch {
+            when(
+                createUserAuthUseCase.invoke(
+                    localAccount?.email,
+                    localAccount?.password
+                )
+            ) {
+                FirebaseResult.FirebaseErrorOperation -> onShowErrorMLD.safeSetValue(
+                    "No se pudo crear tu cuenta, inténtelo más tarde."
+                )
+                FirebaseResult.FirebaseSuccessOperation -> {
+                    saveRemoteUser()
+                }
 
+                FirebaseResult.FirebasePendingOperation -> {
+                    // do nothing :P
+                }
+            }
+        }
+    }
+
+    private fun saveRemoteUser() {
+        viewModelScope.launch {
+            when(saveRemoteAccountUseCase.invoke(localAccount)) {
+                FirebaseResult.FirebaseErrorOperation -> onShowErrorMLD.safeSetValue(
+                    "No se pudo crear tu cuenta, inténtelo más tarde."
+                )
+                FirebaseResult.FirebasePendingOperation -> {
+                    // do nothing :P
+                }
+                FirebaseResult.FirebaseSuccessOperation -> {
+                    onCreateUser.safeSetValue(Unit)
+                }
+            }
+        }
     }
 
     fun navigateToSuccessView() {
@@ -85,5 +124,6 @@ class PreviewImageViewModel @Inject constructor(
 
     fun onGetImageUri(): LiveData<Uri> = imageUri
     fun onUpdateLocalIdPhoto(): LiveData<Unit> = onUpdateLocalIdPhoto
+    fun onCreateUser(): LiveData<Unit> = onCreateUser
 
 }
