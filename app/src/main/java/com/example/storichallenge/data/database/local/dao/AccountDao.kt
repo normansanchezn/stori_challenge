@@ -28,6 +28,6 @@ interface AccountDao {
     @Query("UPDATE AccountEntity " +
             "SET id_photo=:idPhoto " +
             "WHERE email=:email")
-    suspend fun updateIdPhoto(email: String, idPhoto: String)
+    suspend fun updateIdPhoto(email: String?, idPhoto: String?)
 
 }

@@ -9,5 +9,6 @@ interface LocalAccountDataSource {
     suspend fun getAccount(): AccountEntity?
     suspend fun updatePersonalData(email: String?, name: String, lastName: String): RoomOperation
     suspend fun updateLocalPassword(email: String?, password: String): RoomOperation
+    suspend fun updateLocalIdPhotoBase64(email: String?, idPhotoBase64: String?): RoomOperation
 
 }

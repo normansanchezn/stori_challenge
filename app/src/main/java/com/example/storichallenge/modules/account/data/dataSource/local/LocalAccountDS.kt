@@ -53,4 +53,16 @@ class LocalAccountDS @Inject constructor(
             Log.i(TAG, "updateLocalPassword: ${e.message}")
             RoomOperation.ErrorOperation
         }
+
+    override suspend fun updateLocalIdPhotoBase64(
+        email: String?,
+        idPhotoBase64: String?
+    ): RoomOperation =
+        try {
+            localDataSource.updateIdPhoto(email, idPhotoBase64)
+            RoomOperation.SuccessOperation
+        } catch (e: Exception) {
+            Log.i(TAG, "updateLocalPassword: ${e.message}")
+            RoomOperation.ErrorOperation
+        }
 }
