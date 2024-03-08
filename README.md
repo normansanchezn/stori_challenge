@@ -58,3 +58,6 @@ graph TD;
 
 ## Authors
 - [@NormanSN](https://www.linkedin.com/in/norman-sanchez-nolasco/) - Android Developer
+
+![Demo](https://firebasestorage.googleapis.com/v0/b/normanstoritest.appspot.com/o/stori_challenge.gif?alt=media&token=3f6a93df-62b4-4d29-83f5-832d30f9947d)
+
