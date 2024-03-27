@@ -55,7 +55,8 @@ graph TD;
     LocalRepository --> ROOM;
     RemoteRepository <--> Firebase;
 ```
-
+## Video
+![stori_challenge](https://github.com/normansanchezn/stori_challenge/assets/44387183/7d76196a-c79e-42da-852c-cd354b0d206d)
 
 ## Authors
 - [@NormanSN](https://www.linkedin.com/in/norman-sanchez-nolasco/) - Android Developer
