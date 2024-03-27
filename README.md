@@ -56,9 +56,6 @@ graph TD;
     RemoteRepository <--> Firebase;
 ```
 
-## Video
-![Grabación de pantalla 2024-03-07 a la(s) 4 40 16 p m](https://github.com/normansanchezn/stori_challenge/assets/44387183/0f61cdef-d35f-41af-acfe-499b49522911)
-
 
 ## Authors
 - [@NormanSN](https://www.linkedin.com/in/norman-sanchez-nolasco/) - Android Developer
